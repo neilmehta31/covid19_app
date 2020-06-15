@@ -52,10 +52,12 @@ class InfoCard extends StatelessWidget {
                       SizedBox(
                         width: 5,
                       ),
-                      Text(
-                        title,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                      Flexible(
+                          child: Text(
+                          title,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       )
                     ],
                   ),
