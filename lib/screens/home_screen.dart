@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covid_19/constants.dart';
 import 'package:covid_19/screens/details_screen.dart';
 import 'package:covid_19/widgets/infocard.dart';
@@ -19,61 +20,72 @@ class HomeScreen extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Container(
-                padding: EdgeInsets.only(
-                  top: 20,
-                  left: 20,
-                  right: 20,
-                  bottom: 40,
-                ),
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: kPrimaryColor.withOpacity(0.03),
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(50),
-                    bottomRight: Radius.circular(50),
-                  ),
-                ),
-                child: (Wrap(
-                  runSpacing: 20,
-                  spacing: 20,
-                  children: <Widget>[
-                    InfoCard(
-                      title: "Confirmed Cases",
-                      effectedNum: 1062,
-                      iconColor: Color(0xFFFF8C00),
-                      press: () {},
-                    ),
-                    InfoCard(
-                      title: "Total Deaths",
-                      effectedNum: 75,
-                      iconColor: Color(0xFFFF2D55),
-                      press: () {},
-                    ),
-                    InfoCard(
-                      title: "Total Recovered",
-                      effectedNum: 689,
-                      iconColor: Color(0xFF50E3C2),
-                      press: () {},
-                    ),
-                    InfoCard(
-                      title: "New Cases",
-                      effectedNum: 75,
-                      iconColor: Color(0xFF5856D6),
-                      press: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return DetailsScreen();
-                            },
+              StreamBuilder(
+                  stream: Firestore.instance
+                      .collection('covid19nagpurdb')
+                      .snapshots(),
+                  builder: (BuildContext context,AsyncSnapshot snapshot) {
+                    if (!snapshot.hasData) {
+                      return CircularProgressIndicator();
+                    } else {
+                      print(snapshot.data.documents);
+                      return Container(
+                        padding: EdgeInsets.only(
+                          top: 20,
+                          left: 20,
+                          right: 20,
+                          bottom: 40,
+                        ),
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: kPrimaryColor.withOpacity(0.03),
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(50),
+                            bottomRight: Radius.circular(50),
                           ),
-                        );
-                      },
-                    ),
-                  ],
-                )),
-              ),
+                        ),
+                        child: (Wrap(
+                          runSpacing: 20,
+                          spacing: 20,
+                          children: <Widget>[
+                            InfoCard(
+                              title: 'Confirmed Cases',
+                              effectedNum: 1062,
+                              iconColor: Color(0xFFFF8C00),
+                              press: () {},
+                            ),
+                            InfoCard(
+                              title: "Total Deaths",
+                              effectedNum: 75,
+                              iconColor: Color(0xFFFF2D55),
+                              press: () {},
+                            ),
+                            InfoCard(
+                              title: "Total Recovered",
+                              effectedNum: 689,
+                              iconColor: Color(0xFF50E3C2),
+                              press: () {},
+                            ),
+                            InfoCard(
+                              title: "New Cases",
+                              effectedNum: 75,
+                              iconColor: Color(0xFF5856D6),
+                              press: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return DetailsScreen();
+                                    },
+                                  ),
+                                );
+                              },
+                            ),
+                          ],
+                        )),
+                      );
+                    }
+                  }),
               SizedBox(
                 height: 20,
               ),
@@ -195,7 +207,7 @@ class HomeScreen extends StatelessWidget {
       elevation: 0,
       leading: IconButton(
         icon: SvgPicture.asset("assets/icons/menu.svg"),
-        onPressed: () {},
+        onPressed: () {print('Drawer');},//TODO: remove the dialog box printing of drawer
       ),
     );
   }
