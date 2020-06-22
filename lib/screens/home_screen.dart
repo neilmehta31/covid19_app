@@ -24,11 +24,12 @@ class HomeScreen extends StatelessWidget {
                   stream: Firestore.instance
                       .collection('covid19nagpurdb')
                       .snapshots(),
-                  builder: (BuildContext context,AsyncSnapshot snapshot) {
+                  builder: (context, snapshot) {
                     if (!snapshot.hasData) {
-                      return CircularProgressIndicator();
+                      return LinearProgressIndicator();
                     } else {
-                      print(snapshot.data.documents);
+                      //TODO: Watch out for not connecting to the firebase database.
+                      print(snapshot.data.documents[3]['title']);
                       return Container(
                         padding: EdgeInsets.only(
                           top: 20,
@@ -50,27 +51,28 @@ class HomeScreen extends StatelessWidget {
                           children: <Widget>[
                             InfoCard(
                               title: 'Confirmed Cases',
-                              effectedNum: 1062,
+                              effectedNum: snapshot.data.documents[0]['affectedNumbers'],
                               iconColor: Color(0xFFFF8C00),
-                              press: () {},
+                              press: () {print('Confirmed Cases Infocard');},
                             ),
                             InfoCard(
                               title: "Total Deaths",
-                              effectedNum: 75,
+                              effectedNum: snapshot.data.documents[3]['affectedNumbers'],
                               iconColor: Color(0xFFFF2D55),
-                              press: () {},
+                              press: () {print('Total Deaths Infocard');},
                             ),
                             InfoCard(
                               title: "Total Recovered",
-                              effectedNum: 689,
+                              effectedNum: snapshot.data.documents[2]['affectedNumbers'],
                               iconColor: Color(0xFF50E3C2),
-                              press: () {},
+                              press: () {print('Total recovered Infocard');},
                             ),
                             InfoCard(
                               title: "New Cases",
-                              effectedNum: 75,
+                              effectedNum: snapshot.data.documents[1]['affectedNumbers'],
                               iconColor: Color(0xFF5856D6),
                               press: () {
+                                print('New cases Infocard');
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -207,7 +209,9 @@ class HomeScreen extends StatelessWidget {
       elevation: 0,
       leading: IconButton(
         icon: SvgPicture.asset("assets/icons/menu.svg"),
-        onPressed: () {print('Drawer');},//TODO: remove the dialog box printing of drawer
+        onPressed: () {
+          print('Drawer');
+        }, //TODO: remove the dialog box printing of drawer
       ),
     );
   }

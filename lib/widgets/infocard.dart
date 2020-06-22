@@ -55,7 +55,7 @@ class InfoCard extends StatelessWidget {
                       Flexible(
                           child: Text(
                           title,
-                          maxLines: 2,
+                          maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
                       )
