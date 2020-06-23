@@ -53,9 +53,9 @@ class InfoCard extends StatelessWidget {
                         width: 5,
                       ),
                       Flexible(
-                          child: Text(
+                        child: Text(
                           title,
-                          maxLines: 1,
+                          maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
                       )
@@ -76,7 +76,7 @@ class InfoCard extends StatelessWidget {
                                     text: "$effectedNum \n",
                                     style: Theme.of(context)
                                         .textTheme
-                                        .title
+                                        .headline6
                                         .copyWith(fontWeight: FontWeight.bold)),
                                 TextSpan(
                                   text: "People confirmed",

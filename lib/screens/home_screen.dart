@@ -28,8 +28,8 @@ class HomeScreen extends StatelessWidget {
                     if (!snapshot.hasData) {
                       return LinearProgressIndicator();
                     } else {
-                      //TODO: Watch out for not connecting to the firebase database.
-                      print(snapshot.data.documents[3]['title']);
+                      //TO-DO: Watch out for not connecting to the firebase database.
+                      // print(snapshot.data.documents[3]['title']);
                       return Container(
                         padding: EdgeInsets.only(
                           top: 20,
@@ -51,25 +51,35 @@ class HomeScreen extends StatelessWidget {
                           children: <Widget>[
                             InfoCard(
                               title: 'Confirmed Cases',
-                              effectedNum: snapshot.data.documents[0]['affectedNumbers'],
+                              effectedNum: snapshot.data.documents[0]
+                                  ['affectedNumbers'],
                               iconColor: Color(0xFFFF8C00),
-                              press: () {print('Confirmed Cases Infocard');},
+                              press: () {
+                                print('Confirmed Cases Infocard');
+                              },
                             ),
                             InfoCard(
                               title: "Total Deaths",
-                              effectedNum: snapshot.data.documents[3]['affectedNumbers'],
+                              effectedNum: snapshot.data.documents[3]
+                                  ['affectedNumbers'],
                               iconColor: Color(0xFFFF2D55),
-                              press: () {print('Total Deaths Infocard');},
+                              press: () {
+                                print('Total Deaths Infocard');
+                              },
                             ),
                             InfoCard(
                               title: "Total Recovered",
-                              effectedNum: snapshot.data.documents[2]['affectedNumbers'],
+                              effectedNum: snapshot.data.documents[2]
+                                  ['affectedNumbers'],
                               iconColor: Color(0xFF50E3C2),
-                              press: () {print('Total recovered Infocard');},
+                              press: () {
+                                print('Total recovered Infocard');
+                              },
                             ),
                             InfoCard(
                               title: "New Cases",
-                              effectedNum: snapshot.data.documents[1]['affectedNumbers'],
+                              effectedNum: snapshot.data.documents[1]
+                                  ['affectedNumbers'],
                               iconColor: Color(0xFF5856D6),
                               press: () {
                                 print('New cases Infocard');
@@ -101,7 +111,7 @@ class HomeScreen extends StatelessWidget {
                         "Preventions",
                         style: Theme.of(context)
                             .textTheme
-                            .title
+                            .headline6
                             .copyWith(fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
@@ -112,6 +122,9 @@ class HomeScreen extends StatelessWidget {
                         height: 20,
                       ),
                       buildHelpCard(context),
+                      SizedBox(
+                        height: 100,
+                      )
                     ],
                   ),
                 ),
@@ -176,7 +189,7 @@ class HomeScreen extends StatelessWidget {
                         "Dial govt. helpline number 1075 \nfor medical help!\n",
                     style: Theme.of(context)
                         .textTheme
-                        .title
+                        .headline6
                         .copyWith(color: Colors.white, fontSize: 16),
                   ),
                   TextSpan(
@@ -210,8 +223,8 @@ class HomeScreen extends StatelessWidget {
       leading: IconButton(
         icon: SvgPicture.asset("assets/icons/menu.svg"),
         onPressed: () {
-          print('Drawer');
-        }, //TODO: remove the dialog box printing of drawer
+          // print('Drawer');
+        }, //TO-DO: remove the dialog box printing of drawer
       ),
     );
   }
@@ -233,8 +246,10 @@ class PreventionCard extends StatelessWidget {
         SvgPicture.asset(svgSrc),
         Text(
           title,
-          style:
-              Theme.of(context).textTheme.body2.copyWith(color: kPrimaryColor),
+          style: Theme.of(context)
+              .textTheme
+              .bodyText1
+              .copyWith(color: kPrimaryColor),
         )
       ],
     );
