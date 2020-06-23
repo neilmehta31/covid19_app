@@ -19,7 +19,7 @@ class LineReportChart extends StatelessWidget {
               belowBarData:BarAreaData(show: false),
               colors: [kPrimaryColor],
               barWidth: 3,
-              spots: getSports(),
+              spots: getSpots(),
             ),
           ],
         ),
@@ -28,9 +28,9 @@ class LineReportChart extends StatelessWidget {
   }
 }
 
-List<FlSpot> getSports() {
+List<FlSpot> getSpots() {
   return [
-    FlSpot(0, .5),
+    FlSpot(0, 0.5),
     FlSpot(1, 1.5),
     FlSpot(2, .5),
     FlSpot(3, .7),

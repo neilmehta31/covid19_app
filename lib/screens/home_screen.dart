@@ -7,12 +7,17 @@ import 'package:flutter/material.dart';
 // import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatelessWidget {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: buildAppBar(),
+      drawer: DrawerWidget(),
       body: ListView(
         scrollDirection: Axis.vertical,
         cacheExtent: 100.0,
@@ -39,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: kPrimaryColor.withOpacity(0.03),
+                          color: kPrimaryColor.withOpacity(0.04),
                           borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(50),
                             bottomRight: Radius.circular(50),
@@ -223,8 +228,107 @@ class HomeScreen extends StatelessWidget {
       leading: IconButton(
         icon: SvgPicture.asset("assets/icons/menu.svg"),
         onPressed: () {
+          _scaffoldKey.currentState.openDrawer();
           // print('Drawer');
         }, //TO-DO: remove the dialog box printing of drawer
+      ),
+    );
+  }
+}
+
+class DrawerWidget extends StatelessWidget {
+  const DrawerWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.72,
+      child: Drawer(
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            //HEADER of Drawer
+            DrawerHeader(
+              child: Text('Drawer Header'),
+              decoration: BoxDecoration(
+                color: kPrimaryColor.withOpacity(0.8),
+              ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border(bottom: BorderSide(color: Colors.grey[350])),
+                ),
+                child: ListTile(
+                  leading: Icon(Icons.call),
+                  title: Text('Call NMC Helpline'),
+                  onTap: () {
+                    // Update the state of the app.
+                    // ...
+                    launch("tel:0712-2567021");
+                  },
+                ),
+              ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    border: Border(
+                  bottom: BorderSide(color: Colors.grey[350]),
+                )),
+                child: ListTile(
+                  leading: Icon(Icons.call),
+                  title: Text('Call govt. Helpline'),
+                  onTap: () {
+                    launch('tel:1075');
+                    // Update the state of the app.
+                    // ...
+                  },
+                ),
+              ),
+            ),
+
+            Center(
+              child: Container(
+                child: Align(
+                  alignment: FractionalOffset.bottomCenter,
+                  child: Container(
+                    child: Column(
+                      children: <Widget>[
+                        Divider(),
+                        GestureDetector(
+                          child: ListTile(
+                            leading: Icon(Icons.feedback),
+                            title: Text('Feedback'),
+                            onTap: () {
+                              launch(_emailLaunchUri.toString());
+                            },
+                          ),
+                        ),
+                        GestureDetector(
+                          child: ListTile(
+                            leading: Icon(Icons.code),
+                            title: Text('Source'),
+                            onTap: () {
+                              _launchSourceURL();
+                            },
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -255,3 +359,17 @@ class PreventionCard extends StatelessWidget {
     );
   }
 }
+
+_launchSourceURL() async {
+  const url = 'https://bing.com/covid/local/nagpur_maharashtra_india';
+  if (await canLaunch(url)) {
+    await launch(url, forceWebView: true, enableJavaScript: true);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+final Uri _emailLaunchUri = Uri(
+    scheme: 'mailto',
+    path: 'neil.mehta310501@gmail.com',
+    queryParameters: {'subject': 'FEEDBACK and BUGS of COVID19 Nagpur APP'});
