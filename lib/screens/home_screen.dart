@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectivity_wrapper/connectivity_wrapper.dart';
 import 'package:covid_19/constants.dart';
 import 'package:covid_19/widgets/infocard.dart';
 import 'package:flutter/material.dart';
@@ -17,153 +18,157 @@ class HomeScreen extends StatelessWidget {
       key: _scaffoldKey,
       appBar: buildAppBar(),
       drawer: DrawerWidget(),
-      body: ListView(
-        scrollDirection: Axis.vertical,
-        cacheExtent: 100.0,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              StreamBuilder(
-                  stream: Firestore.instance
-                      .collection('covid19nagpurdb')
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return LinearProgressIndicator();
-                    } else {
-                      //TO-DO: Watch out for not connecting to the firebase database.
-                      // print(snapshot.data.documents[3]['title']);
-                      return Column(
-                        children: <Widget>[
-                          Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                color: kPrimaryColor.withOpacity(0.04)),
-                            child: Center(
-                              child: Text.rich(TextSpan(
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 25,
-                                    color: Colors.green[700],
-                                  ),
-                                  text: "COVID-19 Nagpur Updates")),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(
-                              top: 20,
-                              left: 20,
-                              right: 20,
-                              bottom: 40,
-                            ),
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: kPrimaryColor.withOpacity(0.04),
-                              borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(50),
-                                bottomRight: Radius.circular(50),
+      body: ConnectivityWidgetWrapper(
+        alignment: Alignment.topCenter,
+        disableInteraction: true,
+              child: ListView(
+          scrollDirection: Axis.vertical,
+          cacheExtent: 100.0,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                StreamBuilder(
+                    stream: Firestore.instance
+                        .collection('covid19nagpurdb')
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return LinearProgressIndicator();
+                      } else {
+                        //TO-DO: Watch out for not connecting to the firebase database.
+                        // print(snapshot.data.documents[3]['title']);
+                        return Column(
+                          children: <Widget>[
+                            Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  color: kPrimaryColor.withOpacity(0.04)),
+                              child: Center(
+                                child: Text.rich(TextSpan(
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 25,
+                                      color: Colors.green[700],
+                                    ),
+                                    text: "COVID-19 Nagpur Updates")),
                               ),
                             ),
-                            child: (Wrap(
-                              runSpacing: 20,
-                              spacing: 20,
-                              children: <Widget>[
-                                InfoCard(
-                                  title: 'Confirmed Cases',
-                                  effectedNum: snapshot.data.documents[1]
-                                      ['affectedNumbers'],
-                                  iconColor: Color(0xFFFF8C00),
-                                  press: () {
-                                    print('Confirmed Cases Infocard');
-                                  },
+                            Container(
+                              padding: EdgeInsets.only(
+                                top: 20,
+                                left: 20,
+                                right: 20,
+                                bottom: 40,
+                              ),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: kPrimaryColor.withOpacity(0.04),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(50),
+                                  bottomRight: Radius.circular(50),
                                 ),
-                                InfoCard(
-                                  title: "Total Deaths",
-                                  effectedNum: snapshot.data.documents[5]
-                                      ['affectedNumbers'],
-                                  iconColor: Color(0xFFFF2D55),
-                                  press: () {
-                                    print('Total Deaths Infocard');
-                                  },
-                                ),
-                                InfoCard(
-                                  title: "Total Recovered",
-                                  effectedNum: snapshot.data.documents[3]
-                                      ['affectedNumbers'],
-                                  iconColor: Color(0xFF50E3C2),
-                                  press: () {
-                                    print('Total recovered Infocard');
-                                  },
-                                ),
-                                InfoCard(
-                                  title: "Active Cases",
-                                  effectedNum: snapshot.data.documents[0]
-                                      ['affectedNumbers'],
-                                  iconColor: Color(0xFF820909),
-                                  press: () {
-                                    print('New cases Infocard');
-                                  },
-                                ),
-                                InfoCard(
-                                  title: "New Cases",
-                                  effectedNum: snapshot.data.documents[2]
-                                      ['affectedNumbers'],
-                                  iconColor: Color(0xFF5856D6),
-                                  press: () {
-                                    print('New cases Infocard');
-                                  },
-                                ),
-                                InfoCard(
-                                  title: "Recovered today",
-                                  effectedNum: snapshot.data.documents[4]
-                                      ['affectedNumbers'],
-                                  iconColor: Color(0xFFFF47FF),
-                                  press: () {
-                                    print('New cases Infocard');
-                                  },
-                                ),
-                              ],
-                            )),
-                          ),
-                        ],
-                      );
-                    }
-                  }),
-              SizedBox(
-                height: 20,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "Preventions",
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline6
-                            .copyWith(fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      buildPrevention(),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      buildHelpCard(context),
-                      SizedBox(
-                        height: 100,
-                      )
-                    ],
-                  ),
+                              ),
+                              child: (Wrap(
+                                runSpacing: 20,
+                                spacing: 20,
+                                children: <Widget>[
+                                  InfoCard(
+                                    title: 'Confirmed Cases',
+                                    effectedNum: snapshot.data.documents[1]
+                                        ['affectedNumbers'],
+                                    iconColor: Color(0xFFFF8C00),
+                                    press: () {
+                                      print('Confirmed Cases Infocard');
+                                    },
+                                  ),
+                                  InfoCard(
+                                    title: "Total Deaths",
+                                    effectedNum: snapshot.data.documents[5]
+                                        ['affectedNumbers'],
+                                    iconColor: Color(0xFFFF2D55),
+                                    press: () {
+                                      print('Total Deaths Infocard');
+                                    },
+                                  ),
+                                  InfoCard(
+                                    title: "Total Recovered",
+                                    effectedNum: snapshot.data.documents[3]
+                                        ['affectedNumbers'],
+                                    iconColor: Color(0xFF50E3C2),
+                                    press: () {
+                                      print('Total recovered Infocard');
+                                    },
+                                  ),
+                                  InfoCard(
+                                    title: "Active Cases",
+                                    effectedNum: snapshot.data.documents[0]
+                                        ['affectedNumbers'],
+                                    iconColor: Color(0xFF820909),
+                                    press: () {
+                                      print('New cases Infocard');
+                                    },
+                                  ),
+                                  InfoCard(
+                                    title: "New Cases",
+                                    effectedNum: snapshot.data.documents[2]
+                                        ['affectedNumbers'],
+                                    iconColor: Color(0xFF5856D6),
+                                    press: () {
+                                      print('New cases Infocard');
+                                    },
+                                  ),
+                                  InfoCard(
+                                    title: "Recovered today",
+                                    effectedNum: snapshot.data.documents[4]
+                                        ['affectedNumbers'],
+                                    iconColor: Color(0xFFFF47FF),
+                                    press: () {
+                                      print('New cases Infocard');
+                                    },
+                                  ),
+                                ],
+                              )),
+                            ),
+                          ],
+                        );
+                      }
+                    }),
+                SizedBox(
+                  height: 20,
                 ),
-              )
-            ],
-          ),
-        ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          "Preventions",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline6
+                              .copyWith(fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        buildPrevention(),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        buildHelpCard(context),
+                        SizedBox(
+                          height: 100,
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

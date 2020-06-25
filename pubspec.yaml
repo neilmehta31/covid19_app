@@ -32,8 +32,9 @@ dependencies:
   fl_chart: ^0.9.3
   cloud_firestore: ^0.12.9+5
   firebase_core: ^0.4.0+9
-  url_launcher: 
-    
+  url_launcher:
+  connectivity_wrapper: ^1.0.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
