@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covid_19/constants.dart';
-import 'package:covid_19/screens/details_screen.dart';
 import 'package:covid_19/widgets/infocard.dart';
 import 'package:flutter/material.dart';
 
@@ -35,71 +34,99 @@ class HomeScreen extends StatelessWidget {
                     } else {
                       //TO-DO: Watch out for not connecting to the firebase database.
                       // print(snapshot.data.documents[3]['title']);
-                      return Container(
-                        padding: EdgeInsets.only(
-                          top: 20,
-                          left: 20,
-                          right: 20,
-                          bottom: 40,
-                        ),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: kPrimaryColor.withOpacity(0.04),
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(50),
-                            bottomRight: Radius.circular(50),
-                          ),
-                        ),
-                        child: (Wrap(
-                          runSpacing: 20,
-                          spacing: 20,
-                          children: <Widget>[
-                            InfoCard(
-                              title: 'Confirmed Cases',
-                              effectedNum: snapshot.data.documents[0]
-                                  ['affectedNumbers'],
-                              iconColor: Color(0xFFFF8C00),
-                              press: () {
-                                print('Confirmed Cases Infocard');
-                              },
-                            ),
-                            InfoCard(
-                              title: "Total Deaths",
-                              effectedNum: snapshot.data.documents[3]
-                                  ['affectedNumbers'],
-                              iconColor: Color(0xFFFF2D55),
-                              press: () {
-                                print('Total Deaths Infocard');
-                              },
-                            ),
-                            InfoCard(
-                              title: "Total Recovered",
-                              effectedNum: snapshot.data.documents[2]
-                                  ['affectedNumbers'],
-                              iconColor: Color(0xFF50E3C2),
-                              press: () {
-                                print('Total recovered Infocard');
-                              },
-                            ),
-                            InfoCard(
-                              title: "New Cases",
-                              effectedNum: snapshot.data.documents[1]
-                                  ['affectedNumbers'],
-                              iconColor: Color(0xFF5856D6),
-                              press: () {
-                                print('New cases Infocard');
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return DetailsScreen();
-                                    },
+                      return Column(
+                        children: <Widget>[
+                          Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                color: kPrimaryColor.withOpacity(0.04)),
+                            child: Center(
+                              child: Text.rich(TextSpan(
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 25,
+                                    color: Colors.green[700],
                                   ),
-                                );
-                              },
+                                  text: "COVID-19 Nagpur Updates")),
                             ),
-                          ],
-                        )),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(
+                              top: 20,
+                              left: 20,
+                              right: 20,
+                              bottom: 40,
+                            ),
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: kPrimaryColor.withOpacity(0.04),
+                              borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(50),
+                                bottomRight: Radius.circular(50),
+                              ),
+                            ),
+                            child: (Wrap(
+                              runSpacing: 20,
+                              spacing: 20,
+                              children: <Widget>[
+                                InfoCard(
+                                  title: 'Confirmed Cases',
+                                  effectedNum: snapshot.data.documents[1]
+                                      ['affectedNumbers'],
+                                  iconColor: Color(0xFFFF8C00),
+                                  press: () {
+                                    print('Confirmed Cases Infocard');
+                                  },
+                                ),
+                                InfoCard(
+                                  title: "Total Deaths",
+                                  effectedNum: snapshot.data.documents[5]
+                                      ['affectedNumbers'],
+                                  iconColor: Color(0xFFFF2D55),
+                                  press: () {
+                                    print('Total Deaths Infocard');
+                                  },
+                                ),
+                                InfoCard(
+                                  title: "Total Recovered",
+                                  effectedNum: snapshot.data.documents[3]
+                                      ['affectedNumbers'],
+                                  iconColor: Color(0xFF50E3C2),
+                                  press: () {
+                                    print('Total recovered Infocard');
+                                  },
+                                ),
+                                InfoCard(
+                                  title: "Active Cases",
+                                  effectedNum: snapshot.data.documents[0]
+                                      ['affectedNumbers'],
+                                  iconColor: Color(0xFF820909),
+                                  press: () {
+                                    print('New cases Infocard');
+                                  },
+                                ),
+                                InfoCard(
+                                  title: "New Cases",
+                                  effectedNum: snapshot.data.documents[2]
+                                      ['affectedNumbers'],
+                                  iconColor: Color(0xFF5856D6),
+                                  press: () {
+                                    print('New cases Infocard');
+                                  },
+                                ),
+                                InfoCard(
+                                  title: "Recovered today",
+                                  effectedNum: snapshot.data.documents[4]
+                                      ['affectedNumbers'],
+                                  iconColor: Color(0xFFFF47FF),
+                                  press: () {
+                                    print('New cases Infocard');
+                                  },
+                                ),
+                              ],
+                            )),
+                          ),
+                        ],
                       );
                     }
                   }),
@@ -246,88 +273,164 @@ class DrawerWidget extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width * 0.72,
       child: Drawer(
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            //HEADER of Drawer
-            DrawerHeader(
-              child: Text('Drawer Header'),
-              decoration: BoxDecoration(
-                color: kPrimaryColor.withOpacity(0.8),
-              ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
-              child: Container(
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+          ),
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              //HEADER of Drawer
+              DrawerHeader(
                 decoration: BoxDecoration(
-                  border: Border(bottom: BorderSide(color: Colors.grey[350])),
+                  image: DecorationImage(
+                      image: AssetImage('assets/icons/mask.jpg'),
+                      fit: BoxFit.cover),
+                  color: Colors.white,
                 ),
-                child: ListTile(
-                  leading: Icon(Icons.call),
-                  title: Text('Call NMC Helpline'),
-                  onTap: () {
-                    // Update the state of the app.
-                    // ...
-                    launch("tel:0712-2567021");
-                  },
+                child: null,
+              ),
+              ExpansionTile(
+                leading: Icon(
+                  Icons.add_call,
+                  color: Colors.green,
+                ),
+                title: Text('NMC Helpline'),
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15.0, vertical: 8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border:
+                            Border(bottom: BorderSide(color: Colors.grey[350])),
+                      ),
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.call,
+                          color: Colors.blue,
+                        ),
+                        title: Text('0712-2567021'),
+                        onTap: () {
+                          // Update the state of the app.
+                          // ...
+                          launch("tel:0712-2567021");
+                        },
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15.0, vertical: 8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border:
+                            Border(bottom: BorderSide(color: Colors.grey[350])),
+                      ),
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.call,
+                          color: Colors.blue,
+                        ),
+                        title: Text('0712-2551866'),
+                        onTap: () {
+                          // Update the state of the app.
+                          // ...
+                          launch("tel:0712-2551866");
+                        },
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15.0, vertical: 8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border:
+                            Border(bottom: BorderSide(color: Colors.grey[350])),
+                      ),
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.call,
+                          color: Colors.blue,
+                        ),
+                        title: Text('18002333764'),
+                        onTap: () {
+                          // Update the state of the app.
+                          // ...
+                          launch("tel:18002333764");
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Divider(),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
+                child: Container(
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.call,
+                      color: Colors.blue,
+                    ),
+                    title: Text('Call GOVT. Helpline'),
+                    subtitle: Text(
+                      'Health ministry toll-free helpline for queries related to COVID-19',
+                      style: TextStyle(color: Colors.grey[500]),
+                    ),
+                    onTap: () {
+                      launch('tel:1075');
+                      // Update the state of the app.
+                      // ...
+                    },
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
-              child: Container(
-                decoration: BoxDecoration(
-                    border: Border(
-                  bottom: BorderSide(color: Colors.grey[350]),
-                )),
-                child: ListTile(
-                  leading: Icon(Icons.call),
-                  title: Text('Call govt. Helpline'),
-                  onTap: () {
-                    launch('tel:1075');
-                    // Update the state of the app.
-                    // ...
-                  },
-                ),
-              ),
-            ),
 
-            Center(
-              child: Container(
-                child: Align(
-                  alignment: FractionalOffset.bottomCenter,
-                  child: Container(
+              Center(
+                child: Container(
+                  child: Align(
+                    alignment: FractionalOffset.bottomCenter,
                     child: Column(
                       children: <Widget>[
                         Divider(),
                         GestureDetector(
                           child: ListTile(
-                            leading: Icon(Icons.feedback),
-                            title: Text('Feedback'),
-                            onTap: () {
-                              launch(_emailLaunchUri.toString());
-                            },
-                          ),
-                        ),
-                        GestureDetector(
-                          child: ListTile(
-                            leading: Icon(Icons.code),
+                            leading: Icon(
+                              Icons.code,
+                              color: Colors.deepOrange,
+                            ),
                             title: Text('Source'),
                             onTap: () {
                               _launchSourceURL();
                             },
                           ),
-                        )
+                        ),
+                        GestureDetector(
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.feedback,
+                              color: Colors.deepPurple,
+                            ),
+                            title: Text('Feedback'),
+                            onTap: () {
+                              launch('https://forms.gle/i9AAHmKNZfy7gNKJ8');
+                            },
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ),
               ),
-            )
-          ],
+              Container(
+                  alignment: Alignment.bottomCenter,
+                  child: Image.asset('assets/icons/wfh.jpg')),
+            ],
+          ),
         ),
       ),
     );
@@ -369,7 +472,7 @@ _launchSourceURL() async {
   }
 }
 
-final Uri _emailLaunchUri = Uri(
-    scheme: 'mailto',
-    path: 'neil.mehta310501@gmail.com',
-    queryParameters: {'subject': 'FEEDBACK and BUGS of COVID19 Nagpur APP'});
+// final Uri _emailLaunchUri = Uri(
+//     scheme: 'mailto',
+//     path: 'neil.mehta310501@gmail.com',
+//     queryParameters: {'subject': 'FEEDBACK and BUGS of COVID19 Nagpur APP'});
