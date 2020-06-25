@@ -19,9 +19,10 @@ class HomeScreen extends StatelessWidget {
       appBar: buildAppBar(),
       drawer: DrawerWidget(),
       body: ConnectivityWidgetWrapper(
+        message: "Please connect to the Internet",
         alignment: Alignment.topCenter,
         disableInteraction: true,
-              child: ListView(
+        child: ListView(
           scrollDirection: Axis.vertical,
           cacheExtent: 100.0,
           children: [
