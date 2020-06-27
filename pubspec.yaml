@@ -35,6 +35,8 @@ dependencies:
   url_launcher:
   connectivity_wrapper: ^1.0.3
   flutter_launcher_icons: ^0.7.5
+  intl: ^0.16.1
+  
 flutter_icons:
   image_path: "assets/icons/green_logo.png"
   android: true

@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 // import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -39,6 +40,9 @@ class HomeScreen extends StatelessWidget {
                       } else {
                         //TO-DO: Watch out for not connecting to the firebase database.
                         // print(snapshot.data.documents[3]['title']);
+                        var dt = DateTime.now();
+                        var newFormat = DateFormat("dd-MM-yyyy");
+                        String updatedDt = newFormat.format(dt);
                         return Column(
                           children: <Widget>[
                             Container(
@@ -46,13 +50,37 @@ class HomeScreen extends StatelessWidget {
                               decoration: BoxDecoration(
                                   color: kPrimaryColor.withOpacity(0.04)),
                               child: Center(
-                                child: Text.rich(TextSpan(
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 25,
-                                      color: Colors.green[700],
+                                child: Column(
+                                  children: <Widget>[
+                                    Text.rich(
+                                      TextSpan(
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 25,
+                                            color: Colors.green[700],
+                                          ),
+                                          text: "COVID-19 Nagpur Updates"),
                                     ),
-                                    text: "COVID-19 Nagpur Updates")),
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 36),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: <Widget>[
+                                          Text.rich(
+                                            TextSpan(
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 18,
+                                                color: Colors.grey,
+                                              ),
+                                              text: "as of $updatedDt",
+                                            )
+                                          ),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                             Container(
