@@ -330,6 +330,10 @@ class DrawerWidget extends StatelessWidget {
                   color: Colors.green,
                 ),
                 title: Text('NMC Helpline'),
+                subtitle: Text(
+                      'Nagpur Municipal Corporation helpline for queries related to COVID-19',
+                      style: TextStyle(color: Colors.grey[500]),
+                    ),
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.symmetric(
