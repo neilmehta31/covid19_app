@@ -64,18 +64,17 @@ class HomeScreen extends StatelessWidget {
                                     Padding(
                                       padding: const EdgeInsets.only(right: 36),
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
                                         children: <Widget>[
-                                          Text.rich(
-                                            TextSpan(
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 18,
-                                                color: Colors.grey,
-                                              ),
-                                              text: "as of $updatedDt",
-                                            )
-                                          ),
+                                          Text.rich(TextSpan(
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 18,
+                                              color: Colors.grey,
+                                            ),
+                                            text: "as of $updatedDt",
+                                          )),
                                         ],
                                       ),
                                     )
@@ -423,7 +422,19 @@ class DrawerWidget extends StatelessWidget {
                   ),
                 ),
               ),
-
+              Divider(),
+              GestureDetector(
+                              child: ListTile(
+                  leading: Icon(
+                    Icons.contact_mail,
+                    color: Colors.lightBlue,
+                  ),
+                  title: Text('E-pass to travel out of Nagpur'),
+                  onTap: (){
+                    _launchEpass();
+                  },
+                ),
+              ),
               Center(
                 child: Container(
                   child: Align(
@@ -501,6 +512,15 @@ _launchSourceURL() async {
   const url = 'https://bing.com/covid/local/nagpur_maharashtra_india';
   if (await canLaunch(url)) {
     await launch(url, forceWebView: true, enableJavaScript: true);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+_launchEpass() async {
+  const url = 'https://covid19.mhpolice.in/';
+  if (await canLaunch(url)) {
+    await launch(url);
   } else {
     throw 'Could not launch $url';
   }
