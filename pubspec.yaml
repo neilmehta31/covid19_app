@@ -37,6 +37,7 @@ dependencies:
   connectivity_wrapper: ^1.0.3
   flutter_launcher_icons: ^0.7.5
   intl: ^0.16.1
+  http: ^0.12.1
   
 flutter_icons:
   image_path: "assets/icons/green_logo.png"

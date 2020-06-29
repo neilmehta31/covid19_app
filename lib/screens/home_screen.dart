@@ -1,17 +1,46 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:convert';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_wrapper/connectivity_wrapper.dart';
 import 'package:covid_19/constants.dart';
-import 'package:covid_19/widgets/infocard.dart';
+
+// import 'package:covid_19/data/jsonData.dart';
+import 'package:covid_19/widgets/infoPannel.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 // import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/rendering.dart';
+// ignore: unused_import
+import 'dart:async';
 import 'package:flutter_svg/flutter_svg.dart';
+
+// ignore: unused_import
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  List dataAsMap;
+  getData() async {
+    http.Response response = await http
+        .get("https://api.covid19india.org/v2/state_district_wise.json");
+    setState(() {
+      dataAsMap = json.decode(response.body);
+    });
+    // print(dataAsMap[20]["districtData"][18]["confirmed"]);
+  }
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,120 +59,41 @@ class HomeScreen extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                StreamBuilder(
-                    stream: Firestore.instance
-                        .collection('covid19nagpurdb')
-                        .snapshots(),
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData) {
-                        return LinearProgressIndicator();
-                      } else {
-                        //TO-DO: Watch out for not connecting to the firebase database.
-                        // print(snapshot.data.documents[3]['title']);
-                        
-                        return Column(
+                //TO-DO: Watch out for not connecting to the firebase database.
+                // print(snapshot.data.documents[3]['title']);
+
+                Column(
+                  children: <Widget>[
+                    Container(
+                      width: double.infinity,
+                      decoration:
+                          BoxDecoration(color: kPrimaryColor.withOpacity(0.04)),
+                      child: Center(
+                        child: Column(
                           children: <Widget>[
-                            Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                  color: kPrimaryColor.withOpacity(0.04)),
-                              child: Center(
-                                child: Column(
-                                  children: <Widget>[
-                                    Text.rich(
-                                      TextSpan(
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 25,
-                                            color: Colors.green[700],
-                                          ),
-                                          text: "COVID-19 Nagpur Updates"),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(
-                                top: 20,
-                                left: 20,
-                                right: 20,
-                                bottom: 40,
-                              ),
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: kPrimaryColor.withOpacity(0.04),
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(50),
-                                  bottomRight: Radius.circular(50),
-                                ),
-                              ),
-                              child: (Wrap(
-                                runSpacing: 20,
-                                spacing: 20,
-                                children: <Widget>[
-                                  InfoCard(
-                                    title: 'Confirmed Cases',
-                                    effectedNum: snapshot.data.documents[1]
-                                        ['affectedNumbers'],
-                                    iconColor: Color(0xFFFF8C00),
-                                    press: () {
-                                      print('Confirmed Cases Infocard');
-                                    },
+                            Text.rich(
+                              TextSpan(
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 25,
+                                    color: Colors.green[700],
                                   ),
-                                  InfoCard(
-                                    title: "Total Deaths",
-                                    effectedNum: snapshot.data.documents[5]
-                                        ['affectedNumbers'],
-                                    iconColor: Color(0xFFFF2D55),
-                                    press: () {
-                                      print('Total Deaths Infocard');
-                                    },
-                                  ),
-                                  InfoCard(
-                                    title: "Total Recovered",
-                                    effectedNum: snapshot.data.documents[3]
-                                        ['affectedNumbers'],
-                                    iconColor: Color(0xFF50E3C2),
-                                    press: () {
-                                      print('Total recovered Infocard');
-                                    },
-                                  ),
-                                  InfoCard(
-                                    title: "Active Cases",
-                                    effectedNum: snapshot.data.documents[0]
-                                        ['affectedNumbers'],
-                                    iconColor: Color(0xFF820909),
-                                    press: () {
-                                      print('New cases Infocard');
-                                    },
-                                  ),
-                                  InfoCard(
-                                    title: "New Cases",
-                                    effectedNum: snapshot.data.documents[2]
-                                        ['affectedNumbers'],
-                                    iconColor: Color(0xFF5856D6),
-                                    press: () {
-                                      print('New cases Infocard');
-                                    },
-                                  ),
-                                  InfoCard(
-                                    title: "Recovered today",
-                                    effectedNum: snapshot.data.documents[4]
-                                        ['affectedNumbers'],
-                                    iconColor: Color(0xFFFF47FF),
-                                    press: () {
-                                      print('New cases Infocard');
-                                    },
-                                  ),
-                                ],
-                              )),
+                                  text: "COVID-19 Nagpur Updates"),
                             ),
                           ],
-                        );
-                      }
-                    }),
-                  // Card(shape: BoxShape.circle,)  
+                        ),
+                      ),
+                    ),
+      
+                    dataAsMap == null
+                        ? LinearProgressIndicator()
+                        : InfoPannel(
+                            dataAsMap: dataAsMap,
+                          ),
+                  ],
+                ),
+
+                // Card(shape: BoxShape.circle,)
                 SizedBox(
                   height: 20,
                 ),
@@ -313,9 +263,9 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 title: Text('NMC Helpline'),
                 subtitle: Text(
-                      'Nagpur Municipal Corporation helpline for queries related to COVID-19',
-                      style: TextStyle(color: Colors.grey[500]),
-                    ),
+                  'Nagpur Municipal Corporation helpline for queries related to COVID-19',
+                  style: TextStyle(color: Colors.grey[500]),
+                ),
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -410,13 +360,13 @@ class DrawerWidget extends StatelessWidget {
               ),
               Divider(),
               GestureDetector(
-                              child: ListTile(
+                child: ListTile(
                   leading: Icon(
                     Icons.contact_mail,
                     color: Colors.lightBlue,
                   ),
                   title: Text('E-pass to travel out of Nagpur'),
-                  onTap: (){
+                  onTap: () {
                     _launchEpass();
                   },
                 ),
@@ -511,8 +461,3 @@ _launchEpass() async {
     throw 'Could not launch $url';
   }
 }
-
-// final Uri _emailLaunchUri = Uri(
-//     scheme: 'mailto',
-//     path: 'neil.mehta310501@gmail.com',
-//     queryParameters: {'subject': 'FEEDBACK and BUGS of COVID19 Nagpur APP'});
