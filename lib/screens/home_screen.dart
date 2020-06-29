@@ -18,6 +18,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 // ignore: unused_import
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -85,7 +86,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-      
                     dataAsMap == null
                         ? LinearProgressIndicator()
                         : InfoPannel(
@@ -120,12 +120,55 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         buildHelpCard(context),
                         SizedBox(
-                          height: 100,
+                          height: 40,
                         )
                       ],
                     ),
                   ),
-                )
+                ),
+                GestureDetector(
+                  onTap: _launchOtherDistrict,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(colors: [
+                          Color(0xFF1B8D59),
+                          Color(0xFF60BE93),
+                        ]),
+                      ),
+                      height: 75,
+                      width: double.infinity,
+                      child: Card(
+                        shadowColor: kTextLightColor,
+                        color: kBackgroundColor,
+                        elevation: 2,
+                        child: Stack(
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  right: 50, left: 15, top: 15),
+                              child: Text(
+                                  'View Covid 19 statistics for other districts in India',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1
+                                      .copyWith(color: kTextColor)),
+                            ),
+                            Positioned(
+                                right: 20,
+                                top: 20,
+                                child: Icon(
+                                  Icons.navigate_next,
+                                  color: Colors.blue,
+                                ))
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 100)
               ],
             ),
           ],
@@ -229,4 +272,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-
+_launchOtherDistrict() async {
+  const url = "https://bing.com/covid/local/india";
+  if (await canLaunch(url)) {
+    await launch(url, forceWebView: true, enableJavaScript: true);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
