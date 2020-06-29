@@ -40,9 +40,7 @@ class HomeScreen extends StatelessWidget {
                       } else {
                         //TO-DO: Watch out for not connecting to the firebase database.
                         // print(snapshot.data.documents[3]['title']);
-                        var dt = DateTime.now();
-                        var newFormat = DateFormat("dd-MM-yyyy");
-                        String updatedDt = newFormat.format(dt);
+                        
                         return Column(
                           children: <Widget>[
                             Container(
@@ -61,23 +59,6 @@ class HomeScreen extends StatelessWidget {
                                           ),
                                           text: "COVID-19 Nagpur Updates"),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 36),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: <Widget>[
-                                          Text.rich(TextSpan(
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 18,
-                                              color: Colors.grey,
-                                            ),
-                                            text: "as of $updatedDt",
-                                          )),
-                                        ],
-                                      ),
-                                    )
                                   ],
                                 ),
                               ),
@@ -162,6 +143,7 @@ class HomeScreen extends StatelessWidget {
                         );
                       }
                     }),
+                  // Card(shape: BoxShape.circle,)  
                 SizedBox(
                   height: 20,
                 ),

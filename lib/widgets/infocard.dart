@@ -1,5 +1,5 @@
 import 'package:covid_19/constants.dart';
-import 'package:covid_19/widgets/linechart.dart';
+// import 'package:covid_19/widgets/linechart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -71,6 +71,7 @@ class InfoCard extends StatelessWidget {
                         child: RichText(
                           text: TextSpan(
                               style: TextStyle(color: kTextColor),
+                              
                               children: [
                                 TextSpan(
                                     text: "$effectedNum \n",
@@ -85,9 +86,9 @@ class InfoCard extends StatelessWidget {
                               ]),
                         ),
                       ),
-                      Expanded(
-                        child: LineReportChart(),
-                      )
+                      // Expanded(
+                      //   child: LineReportChart(),
+                      // )
                     ],
                   ),
                 )
