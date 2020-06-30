@@ -1,5 +1,8 @@
 import 'dart:convert';
-// import 'package:cloud_firestore/cloud_firestore.dart';
+// ignore: unused_import
+import 'package:firebase_messaging/firebase_messaging.dart';
+// ignore: unused_import
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_wrapper/connectivity_wrapper.dart';
 import 'package:covid_19/constants.dart';
 import 'package:covid_19/widgets/drawer.dart';
@@ -53,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: ConnectivityWidgetWrapper(
         message: "Please connect to the Internet",
         alignment: Alignment.topCenter,
-        disableInteraction: true,
+        disableInteraction: false,
         child: ListView(
           scrollDirection: Axis.vertical,
           cacheExtent: 100.0,
@@ -132,43 +135,49 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Container(
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(colors: [
-                          Color(0xFF1B8D59),
-                          Color(0xFF60BE93),
-                        ]),
-                      ),
+                          borderRadius: BorderRadius.circular(20)),
                       height: 75,
                       width: double.infinity,
                       child: Card(
                         shadowColor: kTextLightColor,
                         color: kBackgroundColor,
-                        elevation: 2,
-                        child: Stack(
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  right: 50, left: 15, top: 15),
-                              child: Text(
-                                  'View Covid 19 statistics for other districts in India',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText1
-                                      .copyWith(color: kTextColor)),
+                        elevation: 0,
+                        child: Container(
+                          child: Container(
+                            decoration: BoxDecoration(
+                                gradient: LinearGradient(colors: [
+                                  Colors.blue[400],
+                                  Colors.blue[900],
+                                ]),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Stack(
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: 50, left: 15, top: 15),
+                                  child: Text(
+                                      'View Covid 19 statistics for other districts in India',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1
+                                          .copyWith(color: Colors.white)),
+                                ),
+                                Positioned(
+                                    right: 20,
+                                    top: 20,
+                                    child: Icon(
+                                      Icons.navigate_next,
+                                      color: Colors.white,
+                                    ))
+                              ],
                             ),
-                            Positioned(
-                                right: 20,
-                                top: 20,
-                                child: Icon(
-                                  Icons.navigate_next,
-                                  color: Colors.blue,
-                                ))
-                          ],
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: 100)
+                SizedBox(height: 125)
               ],
             ),
           ],
