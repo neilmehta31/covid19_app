@@ -205,7 +205,7 @@ class DrawerWidget extends StatelessWidget {
 }
 
 _launchSourceURL() async {
-  const url = 'https://bing.com/covid/local/nagpur_maharashtra_india';
+  const url = 'https://www.covid19india.org/';
   if (await canLaunch(url)) {
     await launch(url, forceWebView: true, enableJavaScript: true);
   } else {
