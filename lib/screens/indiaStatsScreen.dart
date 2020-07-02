@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:covid_19/widgets/stateData.dart';
 import 'package:http/http.dart' as http;
 import 'package:covid_19/widgets/drawer.dart';
 import 'package:flutter/material.dart';
@@ -114,7 +115,7 @@ class _IndiaStatsScreenState extends State<IndiaStatsScreen> {
                       statesDataAsMap: statesDataAsMap,
                       statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
                     ),
-                    // Positioned(  
+                    // Positioned(
                     //   right: 20,
                     //   top: 100,
                     //   child: Image.asset('assets/icons/mask_single.png',),
@@ -203,6 +204,28 @@ class StatsListview extends StatelessWidget {
                           ),
                         ),
                       ),
+                      Column(
+                        children: <Widget>[
+                          Container(
+                            width: MediaQuery.of(context).size.width,
+                            child: Row(
+                              children: <Widget>[
+                                Icon(
+                                  Icons.info_outline,
+                                  color: Colors.amber[700],
+                                  size: 15,
+                                ),
+                                SizedBox(width: 15,),
+                                Text.rich(TextSpan(
+                                  text: "Click to view detailed/district Statistics",
+                                  style: TextStyle(color: Colors.grey[500])
+                                ),),
+
+                              ],
+                            ),
+                          )
+                        ],
+                      )
                     ],
                   ),
                 ),
@@ -271,6 +294,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'AN',
                               stateName: 'Andaman and \nNicobar Islands',
+                              launchStateData: launchANdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -280,6 +304,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'AP',
                               stateName: 'Andhra \nPradesh',
+                              launchStateData: launchAPdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -289,6 +314,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'AR',
                               stateName: 'Arunachal \nPradesh	',
+                              launchStateData: launchARdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -298,6 +324,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'AS',
                               stateName: 'Assam',
+                              launchStateData: launchASdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -307,6 +334,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'BR',
                               stateName: 'Bihar',
+                              launchStateData: launchBRdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -316,6 +344,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'CH',
                               stateName: 'Chandigarh',
+                              launchStateData: launchCHdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -325,6 +354,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'CT',
                               stateName: 'Chhattisgarh',
+                              launchStateData: launchCTdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -334,6 +364,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'DL',
                               stateName: 'Delhi',
+                              launchStateData: launchDLdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -343,6 +374,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'DN',
                               stateName: 'Dadra and \nNagar Haveli',
+                              launchStateData: launchDNdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -352,6 +384,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'GA',
                               stateName: 'Goa',
+                              launchStateData: launchGAdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -361,6 +394,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'GJ',
                               stateName: 'Gujarat',
+                              launchStateData: launchGJdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -370,6 +404,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'HP',
                               stateName: 'Himachal \nPradesh',
+                              launchStateData: launchHPdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -379,6 +414,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'HR',
                               stateName: 'Haryana',
+                              launchStateData: launchHRdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -388,6 +424,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'JH',
                               stateName: 'Jharkhand',
+                              launchStateData: launchJHdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -397,6 +434,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'JK',
                               stateName: 'Jammu and \nKashmir',
+                              launchStateData: launchJKdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -406,6 +444,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'KA',
                               stateName: 'Karnataka',
+                              launchStateData: launchKAdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -415,6 +454,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'KL',
                               stateName: 'Kerala',
+                              launchStateData: launchKLdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -424,6 +464,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'LA',
                               stateName: 'Laddakh',
+                              launchStateData: launchLAdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -439,6 +480,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'MH',
                               stateName: 'Maharashtra',
+                              launchStateData: launchMHdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -448,6 +490,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'ML',
                               stateName: 'Meghalaya',
+                              launchStateData: launchMLdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -457,6 +500,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'MN',
                               stateName: 'Manipur',
+                              launchStateData: launchMNdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -466,6 +510,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'MP',
                               stateName: 'Madhya \nPradesh',
+                              launchStateData: launchMPdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -475,6 +520,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'MZ',
                               stateName: 'Mizoram',
+                              launchStateData: launchMZdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -484,6 +530,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'NL',
                               stateName: 'Nagaland',
+                              launchStateData: launchNLdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -493,6 +540,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'OR',
                               stateName: 'Odisha',
+                              launchStateData: launchORdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -502,6 +550,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'PB',
                               stateName: 'Punjab',
+                              launchStateData: launchPBdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -511,6 +560,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'PY',
                               stateName: 'Puducherry',
+                              launchStateData: launchPYdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -520,6 +570,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'RJ',
                               stateName: 'Rajasthan',
+                              launchStateData: launchRJdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -529,6 +580,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'SK',
                               stateName: 'Sikkim',
+                              launchStateData: launchSKdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -538,6 +590,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'TG',
                               stateName: 'Telangana',
+                              launchStateData: launchTGdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -547,6 +600,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'TN',
                               stateName: 'Tamil Nadu',
+                              launchStateData: launchTNdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -556,6 +610,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'TR',
                               stateName: 'Tripura',
+                              launchStateData: launchTRdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -566,6 +621,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'UP',
                               stateName: 'Uttar \nPradesh',
+                              launchStateData: launchUPdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -575,6 +631,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'UT',
                               stateName: 'Uttarakhand',
+                              launchStateData: launchUTdata,
                             ),
                             Divider(
                               color: Colors.black45,
@@ -584,6 +641,7 @@ class StatsListview extends StatelessWidget {
                                   statesDataWithInitialsAsMap,
                               initials: 'WB',
                               stateName: 'West Bengal',
+                              launchStateData: launchWBdata,
                             ),
                           ],
                         ),
@@ -608,6 +666,7 @@ class StatesAndUtData extends StatelessWidget {
   final Map statesDataWithInitialsAsMap;
   final String initials;
   final String stateName;
+  final Function launchStateData;
   // final int indexState;
   const StatesAndUtData({
     Key key,
@@ -615,93 +674,109 @@ class StatesAndUtData extends StatelessWidget {
     this.statesDataWithInitialsAsMap,
     this.initials,
     this.stateName,
+    this.launchStateData,
     // this.indexState,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Text(
-        stateName,
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
-      ),
-      title: Container(
-        child: Stack(
-          alignment: Alignment.centerLeft,
-          children: <Widget>[
-            // Text.rich(TextSpan(
-            //   text: stateName,
-            //   style: TextStyle(
-            //     color: Colors.black,
-            //     fontWeight: FontWeight.bold,
-            //     fontSize: 11,
-            //   ),
-            // )),
-            Positioned(
-              right: MediaQuery.of(context).size.width*.49,
-              child: Text.rich(
-                //confirmed
-                TextSpan(
-                  text: statesDataWithInitialsAsMap[initials]['total']
-                                  ['confirmed']
-                              .toString() ==
-                          'null'
-                      ? '0'
-                      : statesDataWithInitialsAsMap[initials]['total']
-                              ['confirmed']
-                          .toString(),
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: launchStateData,
+      child: ListTile(
+        leading: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Icon(
+                Icons.info_outline,
+                size: 18,
+                color: Colors.amber[700],
+              ),
+              Text(
+                stateName,
+                maxLines: 4,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
+        ),
+        title: Container(
+          child: Stack(
+            alignment: Alignment.centerLeft,
+            children: <Widget>[
+              // Text.rich(TextSpan(
+              //   text: stateName,
+              //   style: TextStyle(
+              //     color: Colors.black,
+              //     fontWeight: FontWeight.bold,
+              //     fontSize: 11,
+              //   ),
+              // )),
+              Positioned(
+                right: MediaQuery.of(context).size.width * .49,
+                child: Text.rich(
+                  //confirmed
+                  TextSpan(
+                    text: statesDataWithInitialsAsMap[initials]['total']
+                                    ['confirmed']
+                                .toString() ==
+                            'null'
+                        ? '0'
+                        : statesDataWithInitialsAsMap[initials]['total']
+                                ['confirmed']
+                            .toString(),
+                    style: TextStyle(
+                      color: Colors.red,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Positioned(
-              right: MediaQuery.of(context).size.width*.265,
-              child: Text.rich(
-                //deceased
-                TextSpan(
-                  text: statesDataWithInitialsAsMap[initials]['total']
-                                  ['deceased']
-                              .toString() ==
-                          'null'
-                      ? '0'
-                      : statesDataWithInitialsAsMap[initials]['total']
-                              ['deceased']
-                          .toString(),
-                  style: TextStyle(
-                    color: Colors.black87,
-                    fontWeight: FontWeight.bold,
+              Positioned(
+                right: MediaQuery.of(context).size.width * .265,
+                child: Text.rich(
+                  //deceased
+                  TextSpan(
+                    text: statesDataWithInitialsAsMap[initials]['total']
+                                    ['deceased']
+                                .toString() ==
+                            'null'
+                        ? '0'
+                        : statesDataWithInitialsAsMap[initials]['total']
+                                ['deceased']
+                            .toString(),
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
-            ),
-            Text.rich(
-              TextSpan(text: ''),
-            ),
-            Positioned(
-              right: MediaQuery.of(context).size.width*.04,
-              child: Text.rich(
-                //recovered
-                TextSpan(
-                  text: statesDataWithInitialsAsMap[initials]['total']
-                                  ['recovered']
-                              .toString() ==
-                          'null'
-                      ? '0'
-                      : statesDataWithInitialsAsMap[initials]['total']
-                              ['recovered']
-                          .toString(),
-                  style: TextStyle(
-                    color: Colors.green,
-                    fontWeight: FontWeight.bold,
+              Text.rich(
+                TextSpan(text: ''),
+              ),
+              Positioned(
+                right: MediaQuery.of(context).size.width * .04,
+                child: Text.rich(
+                  //recovered
+                  TextSpan(
+                    text: statesDataWithInitialsAsMap[initials]['total']
+                                    ['recovered']
+                                .toString() ==
+                            'null'
+                        ? '0'
+                        : statesDataWithInitialsAsMap[initials]['total']
+                                ['recovered']
+                            .toString(),
+                    style: TextStyle(
+                      color: Colors.green,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -155,17 +155,13 @@ class DrawerWidget extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         Divider(),
-                        GestureDetector(
-                          child: ListTile(
-                            leading: Icon(
-                              Icons.code,
-                              color: Colors.deepOrange,
-                            ),
-                            title: Text('Source'),
-                            onTap: () {
-                              _launchSourceURL();
-                            },
+                        ListTile(
+                          leading: Icon(
+                            Icons.code,
+                            color: Colors.deepOrange,
                           ),
+                          title: Text('Source'),
+                          subtitle: Text('www.covid19india.org'),
                         ),
                         GestureDetector(
                           child: ListTile(
@@ -201,15 +197,6 @@ class DrawerWidget extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-_launchSourceURL() async {
-  const url = 'https://www.covid19india.org/';
-  if (await canLaunch(url)) {
-    await launch(url, forceWebView: true, enableJavaScript: true);
-  } else {
-    throw 'Could not launch $url';
   }
 }
 
