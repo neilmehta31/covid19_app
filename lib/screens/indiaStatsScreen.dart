@@ -74,14 +74,14 @@ class _IndiaStatsScreenState extends State<IndiaStatsScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 50),
+                        padding: const EdgeInsets.only(left: 0),
                         child: Container(
-                          alignment: Alignment.centerLeft,
+                          alignment: Alignment.center,
                           child: Column(
                             children: <Widget>[
                               Text.rich(
                                 TextSpan(
-                                  text: "India",
+                                  text: "COVID-19",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 70,
@@ -94,10 +94,10 @@ class _IndiaStatsScreenState extends State<IndiaStatsScreen> {
                         ),
                       ),
                     ),
-                    Positioned(
-                      top: 90,
-                      right: 90,
+                    Padding(
+                      padding: const EdgeInsets.only(top: 90),
                       child: Container(
+                        alignment: Alignment.center,
                         child: Text.rich(
                           TextSpan(
                             text: "Statistics",
@@ -114,6 +114,11 @@ class _IndiaStatsScreenState extends State<IndiaStatsScreen> {
                       statesDataAsMap: statesDataAsMap,
                       statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
                     ),
+                    // Positioned(  
+                    //   right: 20,
+                    //   top: 100,
+                    //   child: Image.asset('assets/icons/mask_single.png',),
+                    // ),
                   ],
                 ),
               ],
@@ -127,7 +132,7 @@ class _IndiaStatsScreenState extends State<IndiaStatsScreen> {
       backgroundColor: Colors.blue,
       elevation: 0,
       leading: IconButton(
-        icon: SvgPicture.asset("assets/icons/menu_white.svg"),
+        icon: SvgPicture.asset("assets/icons/menu_white_cleaned.svg"),
         onPressed: () {
           _scaffoldKey.currentState.openDrawer();
           // print('Drawer');
@@ -194,6 +199,7 @@ class StatsListview extends StatelessWidget {
                           text: "All State/Union Territory",
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
+                            fontSize: 25,
                           ),
                         ),
                       ),
@@ -264,7 +270,7 @@ class StatsListview extends StatelessWidget {
                               statesDataWithInitialsAsMap:
                                   statesDataWithInitialsAsMap,
                               initials: 'AN',
-                              stateName: 'Andaman and\n Nicobar Islands',
+                              stateName: 'Andaman and \nNicobar Islands',
                             ),
                             Divider(
                               color: Colors.black45,
@@ -390,7 +396,7 @@ class StatsListview extends StatelessWidget {
                               statesDataWithInitialsAsMap:
                                   statesDataWithInitialsAsMap,
                               initials: 'JK',
-                              stateName: 'Jammu and\n Kashmir',
+                              stateName: 'Jammu and \nKashmir',
                             ),
                             Divider(
                               color: Colors.black45,
@@ -733,16 +739,25 @@ class StateAndIndiaPannel extends StatelessWidget {
             Text.rich(
               TextSpan(
                 text: 'Confirmed',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
             Text.rich(
               TextSpan(
                 text: 'Deceased',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
             Text.rich(
               TextSpan(
                 text: 'Recovered',
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
           ],

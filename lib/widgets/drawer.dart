@@ -23,9 +23,9 @@ class DrawerWidget extends StatelessWidget {
               DrawerHeader(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('assets/icons/mask.jpg'),
-                      fit: BoxFit.cover,
-                      ),
+                    image: AssetImage('assets/icons/mask.jpg'),
+                    fit: BoxFit.cover,
+                  ),
                   color: Colors.white,
                 ),
                 child: null,
@@ -185,8 +185,17 @@ class DrawerWidget extends StatelessWidget {
                 ),
               ),
               Container(
-                  alignment: Alignment.bottomCenter,
-                  child: Image.asset('assets/icons/wfh.jpg')),
+                alignment: Alignment.bottomCenter,
+                child: Image.asset('assets/icons/wfh.jpg'),
+              ),
+              Divider(),
+              ListTile(
+                leading: Icon(Icons.bookmark,color: Colors.amber,),
+                title: Text.rich(TextSpan(
+                  text:"Developed By Neil Mehta",
+                  style:TextStyle(color: Colors.grey[600]),
+                )),
+              )
             ],
           ),
         ),

@@ -8,12 +8,15 @@ class InfoCard extends StatelessWidget {
   final int effectedNum;
   final Color iconColor;
   final Function press;
+  final Color colorNumbers;
+
   const InfoCard({
     Key key,
     this.title,
     this.effectedNum,
     this.iconColor,
     this.press,
+    this.colorNumbers,
   }) : super(key: key);
 
   @override
@@ -66,24 +69,31 @@ class InfoCard extends StatelessWidget {
                   padding: const EdgeInsets.only(bottom: 10.0),
                   child: Row(
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: RichText(
-                          text: TextSpan(
-                              style: TextStyle(color: kTextColor),
-                              
-                              children: [
-                                TextSpan(
+                      Container(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 50, vertical: 1),
+                          child: RichText(
+                            text: TextSpan(
+                                style: TextStyle(color: kTextColor),
+                                children: [
+                                  TextSpan(
                                     text: "$effectedNum \n",
                                     style: Theme.of(context)
                                         .textTheme
                                         .headline6
-                                        .copyWith(fontWeight: FontWeight.bold)),
-                                TextSpan(
-                                  text: "People confirmed",
-                                  style: TextStyle(fontSize: 12, height: 2),
-                                )
-                              ]),
+                                        .copyWith(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 25,
+                                            color: colorNumbers),
+                                  ),
+                                  
+                                  // TextSpan(
+                                  //   text: "People confirmed",
+                                  //   style: TextStyle(fontSize: 12, height: 2),
+                                  // )
+                                ]),
+                          ),
                         ),
                       ),
                       // Expanded(

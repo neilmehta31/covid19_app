@@ -36,6 +36,7 @@ class InfoPannel extends StatelessWidget {
             title: 'Confirmed Cases',
             effectedNum:dataAsMap[20]["districtData"][18]["confirmed"],
             iconColor: Color(0xFFFF8C00),
+            colorNumbers: Colors.red,
             press: () {
               print('Confirmed Cases Infocard');
             },
@@ -44,6 +45,7 @@ class InfoPannel extends StatelessWidget {
             title: "Total Deaths",
             effectedNum: dataAsMap[20]["districtData"][18]["deceased"],
             iconColor: Color(0xFFFF2D55),
+            colorNumbers: Colors.black87,
             press: () {
               print('Total Deaths Infocard');
             },
@@ -52,6 +54,7 @@ class InfoPannel extends StatelessWidget {
             title: "Total Recovered",
             effectedNum: dataAsMap[20]["districtData"][18]["recovered"],
             iconColor: Color(0xFF50E3C2),
+            colorNumbers: Colors.green,
             press: () {
               print('Total recovered Infocard');
             },
@@ -60,6 +63,7 @@ class InfoPannel extends StatelessWidget {
             title: "Active Cases",
             effectedNum: dataAsMap[20]["districtData"][18]["active"],
             iconColor: Color(0xFF820909),
+            colorNumbers: Colors.red[900],
             press: () {
               print('Active cases Infocard');
             },
