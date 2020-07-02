@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'package:covid_19/constants.dart';
 import 'package:covid_19/widgets/drawer.dart';
@@ -216,14 +215,5 @@ class _HomeScreenState extends State<HomeScreen> {
         }, //TO-DO: remove the dialog box printing of drawer
       ),
     );
-  }
-}
-
-_launchOtherDistrict() async {
-  const url = "https://bing.com/covid/local/india";
-  if (await canLaunch(url)) {
-    await launch(url, forceWebView: true, enableJavaScript: true);
-  } else {
-    throw 'Could not launch $url';
   }
 }
