@@ -64,22 +64,22 @@ class InfoPannel extends StatelessWidget {
               print('Active cases Infocard');
             },
           ),
-          InfoCard(
-            title: "New Cases",
-            effectedNum: dataAsMap[20]["districtData"][18]["delta"]["confirmed"],
-            iconColor: Color(0xFF5856D6),
-            press: () {
-              print('New cases Infocard');
-            },
-          ),
-          InfoCard(
-            title: "Recovered today",
-            effectedNum: dataAsMap[20]["districtData"][18]["delta"]["recovered"],
-            iconColor: Color(0xFFFF47FF),
-            press: () {
-              print('Recovered today Infocard');
-            },
-          ),
+          // InfoCard(
+          //   title: "New Cases",
+          //   effectedNum: dataAsMap[20]["districtData"][18]["delta"]["confirmed"],
+          //   iconColor: Color(0xFF5856D6),
+          //   press: () {
+          //     print('New cases Infocard');
+          //   },
+          // ),
+          // InfoCard(
+          //   title: "Recovered today",
+          //   effectedNum: dataAsMap[20]["districtData"][18]["delta"]["recovered"],
+          //   iconColor: Color(0xFFFF47FF),
+          //   press: () {
+          //     print('Recovered today Infocard');
+          //   },
+          // ),
         ],
       )),
     );

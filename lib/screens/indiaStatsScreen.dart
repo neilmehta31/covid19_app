@@ -45,9 +45,10 @@ class _IndiaStatsScreenState extends State<IndiaStatsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print(statesDataAsMap);
-    print('__________________________________________________');
-    print(statesDataWithInitialsAsMap);
+//    print(statesDataWithInitialsAsMap['AP']['total']['confirmed']);
+    // print(statesDataAsMap);
+    // print('__________________________________________________');
+    // print(statesDataWithInitialsAsMap);
     return Scaffold(
         key: _scaffoldKey,
         appBar: buildAppBar(),
@@ -123,10 +124,10 @@ class _IndiaStatsScreenState extends State<IndiaStatsScreen> {
 
   AppBar buildAppBar() {
     return AppBar(
-      backgroundColor: kPrimaryColor.withOpacity(0.03),
+      backgroundColor: Colors.blue,
       elevation: 0,
       leading: IconButton(
-        icon: SvgPicture.asset("assets/icons/menu.svg"),
+        icon: SvgPicture.asset("assets/icons/menu_white.svg"),
         onPressed: () {
           _scaffoldKey.currentState.openDrawer();
           // print('Drawer');
@@ -166,7 +167,7 @@ class StatsListview extends StatelessWidget {
               top: 110,
             ),
             child: statesDataAsMap == null
-                ? LinearProgressIndicator()
+                ? CircularProgressIndicator()
                 : StateAndIndiaPannel(
                     statesDataAsMap: statesDataAsMap,
                   ),
@@ -251,228 +252,336 @@ class StatsListview extends StatelessWidget {
                 ),
                 statesDataWithInitialsAsMap == null
                     ? LinearProgressIndicator()
-                    : StatesAndUtData(
-                        statesDataWithInitialsAsMap:
-                            statesDataWithInitialsAsMap,
-                        initials: 'AN',
-                        stateName: 'Andaman and Nicobar Islands',
-                      ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'AP',
-                  stateName: 'Andhra Pradesh',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'AR',
-                  stateName: 'Arunachal Pradesh	',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'AS',
-                  stateName: 'Assam',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'BR',
-                  stateName: 'Bihar',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'CH',
-                  stateName: 'Chandigarh',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'CT',
-                  stateName: 'Chhattisgarh',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'DL',
-                  stateName: 'Delhi',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'DN',
-                  stateName: 'Dadra and Nagar Haveli',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'GA',
-                  stateName: 'Goa',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'GJ',
-                  stateName: 'Gujarat',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'HP',
-                  stateName: 'Himachal Pradesh',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'HR',
-                  stateName: 'Haryana',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'JH',
-                  stateName: 'Jharkhand',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'JK',
-                  stateName: 'Jammu and Kashmir',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'KA',
-                  stateName: 'Karnataka',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'KL',
-                  stateName: 'Kerala',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'LA',
-                  stateName: 'Laddakh',
-                ),
-                Divider(),
-                // StatesAndUtData(
-                //   statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                //   initials: 'LD',
-                //   stateName: 'Lakshadweep',
-                // ),
-                // Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'MH',
-                  stateName: 'Maharashtra',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'ML',
-                  stateName: 'Meghalaya',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'MN',
-                  stateName: 'Manipur',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'MP',
-                  stateName: 'Madhya Pradesh',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'MZ',
-                  stateName: 'Mizoram',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'NL',
-                  stateName: 'Nagaland',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'OR',
-                  stateName: 'Odisha',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'PB',
-                  stateName: 'Punjab',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'PY',
-                  stateName: 'Puducherry',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'RJ',
-                  stateName: 'Rajasthan',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'SK',
-                  stateName: 'Sikkim',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'TG',
-                  stateName: 'Telangana',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'TN',
-                  stateName: 'Tamil Nadu',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'TR',
-                  stateName: 'Tripura',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'TT',
-                  stateName: 'Maharashtra',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'UP',
-                  stateName: 'Uttar Pradesh',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'UT',
-                  stateName: 'Uttarakhand',
-                ),
-                Divider(),
-                StatesAndUtData(
-                  statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
-                  initials: 'WB',
-                  stateName: 'West Bengal',
-                ),
+                    : Container(
+                        child: Column(
+                          children: <Widget>[
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 18),
+                              child: Divider(),
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'AN',
+                              stateName: 'Andaman and\n Nicobar Islands',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'AP',
+                              stateName: 'Andhra \nPradesh',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'AR',
+                              stateName: 'Arunachal \nPradesh	',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'AS',
+                              stateName: 'Assam',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'BR',
+                              stateName: 'Bihar',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'CH',
+                              stateName: 'Chandigarh',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'CT',
+                              stateName: 'Chhattisgarh',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'DL',
+                              stateName: 'Delhi',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'DN',
+                              stateName: 'Dadra and \nNagar Haveli',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'GA',
+                              stateName: 'Goa',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'GJ',
+                              stateName: 'Gujarat',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'HP',
+                              stateName: 'Himachal \nPradesh',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'HR',
+                              stateName: 'Haryana',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'JH',
+                              stateName: 'Jharkhand',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'JK',
+                              stateName: 'Jammu and\n Kashmir',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'KA',
+                              stateName: 'Karnataka',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'KL',
+                              stateName: 'Kerala',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'LA',
+                              stateName: 'Laddakh',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            // StatesAndUtData(
+                            //   statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
+                            //   initials: 'LD',
+                            //   stateName: 'Lakshadweep',
+                            // ),
+                            // Divider(),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'MH',
+                              stateName: 'Maharashtra',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'ML',
+                              stateName: 'Meghalaya',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'MN',
+                              stateName: 'Manipur',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'MP',
+                              stateName: 'Madhya \nPradesh',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'MZ',
+                              stateName: 'Mizoram',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'NL',
+                              stateName: 'Nagaland',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'OR',
+                              stateName: 'Odisha',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'PB',
+                              stateName: 'Punjab',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'PY',
+                              stateName: 'Puducherry',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'RJ',
+                              stateName: 'Rajasthan',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'SK',
+                              stateName: 'Sikkim',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'TG',
+                              stateName: 'Telangana',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'TN',
+                              stateName: 'Tamil Nadu',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'TR',
+                              stateName: 'Tripura',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'UP',
+                              stateName: 'Uttar \nPradesh',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'UT',
+                              stateName: 'Uttarakhand',
+                            ),
+                            Divider(
+                              color: Colors.black45,
+                            ),
+                            StatesAndUtData(
+                              statesDataWithInitialsAsMap:
+                                  statesDataWithInitialsAsMap,
+                              initials: 'WB',
+                              stateName: 'West Bengal',
+                            ),
+                          ],
+                        ),
+                      )
                 // // Divider(),
                 // // StatesAndUtData(
                 // //   statesDataWithInitialsAsMap: statesDataWithInitialsAsMap,
@@ -506,64 +615,83 @@ class StatesAndUtData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Text.rich(TextSpan(
-        text: stateName,
-        style: TextStyle(
-          color: Colors.black,
-          fontWeight: FontWeight.bold,
-          fontSize: 11,
-        ),
-      )),
+      leading: Text(
+        stateName,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+      ),
       title: Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Stack(
+          alignment: Alignment.centerLeft,
           children: <Widget>[
-            Text.rich(
-              //confirmed
-              TextSpan(
-                text: statesDataWithInitialsAsMap[initials]['total']
-                                ['confirmed']
-                            .toString() ==
-                        'null'
-                    ? '0'
-                    : statesDataWithInitialsAsMap[initials]['total']
-                            ['confirmed']
-                        .toString(),
-                style: TextStyle(
-                  color: Colors.red,
-                  fontWeight: FontWeight.bold,
+            // Text.rich(TextSpan(
+            //   text: stateName,
+            //   style: TextStyle(
+            //     color: Colors.black,
+            //     fontWeight: FontWeight.bold,
+            //     fontSize: 11,
+            //   ),
+            // )),
+            Positioned(
+              right: MediaQuery.of(context).size.width*.49,
+              child: Text.rich(
+                //confirmed
+                TextSpan(
+                  text: statesDataWithInitialsAsMap[initials]['total']
+                                  ['confirmed']
+                              .toString() ==
+                          'null'
+                      ? '0'
+                      : statesDataWithInitialsAsMap[initials]['total']
+                              ['confirmed']
+                          .toString(),
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              right: MediaQuery.of(context).size.width*.265,
+              child: Text.rich(
+                //deceased
+                TextSpan(
+                  text: statesDataWithInitialsAsMap[initials]['total']
+                                  ['deceased']
+                              .toString() ==
+                          'null'
+                      ? '0'
+                      : statesDataWithInitialsAsMap[initials]['total']
+                              ['deceased']
+                          .toString(),
+                  style: TextStyle(
+                    color: Colors.black87,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
             Text.rich(
-              //deceased
-              TextSpan(
-                text: statesDataWithInitialsAsMap[initials]['total']['deceased']
-                            .toString() ==
-                        'null'
-                    ? '0'
-                    : statesDataWithInitialsAsMap[initials]['total']['deceased']
-                        .toString(),
-                style: TextStyle(
-                  color: Colors.black87,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              TextSpan(text: ''),
             ),
-            Text.rich(
-              //recovered
-              TextSpan(
-                text: statesDataWithInitialsAsMap[initials]['total']
-                                ['recovered']
-                            .toString() ==
-                        'null'
-                    ? '0'
-                    : statesDataWithInitialsAsMap[initials]['total']
-                            ['recovered']
-                        .toString(),
-                style: TextStyle(
-                  color: Colors.green,
-                  fontWeight: FontWeight.bold,
+            Positioned(
+              right: MediaQuery.of(context).size.width*.04,
+              child: Text.rich(
+                //recovered
+                TextSpan(
+                  text: statesDataWithInitialsAsMap[initials]['total']
+                                  ['recovered']
+                              .toString() ==
+                          'null'
+                      ? '0'
+                      : statesDataWithInitialsAsMap[initials]['total']
+                              ['recovered']
+                          .toString(),
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),

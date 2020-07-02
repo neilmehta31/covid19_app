@@ -24,7 +24,8 @@ class DrawerWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage('assets/icons/mask.jpg'),
-                      fit: BoxFit.cover),
+                      fit: BoxFit.cover,
+                      ),
                   color: Colors.white,
                 ),
                 child: null,

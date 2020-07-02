@@ -38,7 +38,7 @@ class BottomNavBar extends StatefulWidget {
 
 class _BottomNavBarState extends State<BottomNavBar> {
 
-  int _currentIndex = 1;
+  int _currentIndex = 0;
   var screens = [
     HomeScreen(),
     IndiaStatsScreen(),
@@ -53,7 +53,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         selectedFontSize: 12,
         // iconSize: 15,
         backgroundColor: Color(0xFFF5F5F5),
-        type: BottomNavigationBarType.fixed,
+        type: BottomNavigationBarType.shifting,
         // iconSize: 30,
         items: [
           BottomNavigationBarItem(
