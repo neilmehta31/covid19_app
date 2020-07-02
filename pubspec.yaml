@@ -38,6 +38,7 @@ dependencies:
   flutter_launcher_icons: ^0.7.5
   intl: ^0.16.1
   http: ^0.12.1
+  cuberto_bottom_bar: ^1.1.1+2  
   
 flutter_icons:
   image_path: "assets/icons/green_logo.png"

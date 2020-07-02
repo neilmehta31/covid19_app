@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
-
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({
     Key key,
@@ -110,26 +108,29 @@ class DrawerWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              Divider(),
+              // Divider(),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
-                child: Container(
-                  child: ListTile(
-                    leading: Icon(
-                      Icons.call,
-                      color: Colors.blue,
+                padding: const EdgeInsets.only(top: 5),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 15.0, vertical: 8.0),
+                  child: Container(
+                    child: ListTile(
+                      leading: Icon(
+                        Icons.call,
+                        color: Colors.blue,
+                      ),
+                      title: Text('Call GOVT. Helpline'),
+                      subtitle: Text(
+                        'Health ministry toll-free helpline for queries related to COVID-19',
+                        style: TextStyle(color: Colors.grey[500]),
+                      ),
+                      onTap: () {
+                        launch('tel:1075');
+                        // Update the state of the app.
+                        // ...
+                      },
                     ),
-                    title: Text('Call GOVT. Helpline'),
-                    subtitle: Text(
-                      'Health ministry toll-free helpline for queries related to COVID-19',
-                      style: TextStyle(color: Colors.grey[500]),
-                    ),
-                    onTap: () {
-                      launch('tel:1075');
-                      // Update the state of the app.
-                      // ...
-                    },
                   ),
                 ),
               ),

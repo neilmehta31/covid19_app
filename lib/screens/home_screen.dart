@@ -1,27 +1,15 @@
 import 'dart:convert';
-// ignore: unused_import
-import 'package:firebase_messaging/firebase_messaging.dart';
-// ignore: unused_import
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity_wrapper/connectivity_wrapper.dart';
-import 'package:covid_19/constants.dart';
-import 'package:covid_19/widgets/drawer.dart';
-
-// import 'package:covid_19/data/jsonData.dart';
-import 'package:covid_19/widgets/infoPannel.dart';
-import 'package:covid_19/widgets/preventionCard.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
-// import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/rendering.dart';
-// ignore: unused_import
-import 'dart:async';
 import 'package:flutter_svg/flutter_svg.dart';
-
-// ignore: unused_import
-import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'package:covid_19/constants.dart';
+import 'package:covid_19/widgets/drawer.dart';
+import 'package:covid_19/widgets/infoPannel.dart';
+import 'package:covid_19/widgets/preventionCard.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -38,7 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       dataAsMap = json.decode(response.body);
     });
-    // print(dataAsMap[20]["districtData"][18]["confirmed"]);
   }
 
   @override
@@ -123,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         buildHelpCard(context),
                         SizedBox(
-                          height: 40,
+                          height: 20,
                         )
                       ],
                     ),
@@ -177,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 125)
+                SizedBox(height: 20)
               ],
             ),
           ],
