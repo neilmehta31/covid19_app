@@ -116,54 +116,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                GestureDetector(
-                  onTap: _launchOtherDistrict,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20)),
-                      height: 75,
-                      width: double.infinity,
-                      child: Card(
-                        shadowColor: kTextLightColor,
-                        color: kBackgroundColor,
-                        elevation: 0,
-                        child: Container(
-                          child: Container(
-                            decoration: BoxDecoration(
-                                gradient: LinearGradient(colors: [
-                                  Colors.blue[400],
-                                  Colors.blue[900],
-                                ]),
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Stack(
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: 50, left: 15, top: 15),
-                                  child: Text(
-                                      'View Covid 19 statistics for other districts in India',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1
-                                          .copyWith(color: Colors.white)),
-                                ),
-                                Positioned(
-                                    right: 20,
-                                    top: 20,
-                                    child: Icon(
-                                      Icons.navigate_next,
-                                      color: Colors.white,
-                                    ))
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
                 SizedBox(height: 20)
               ],
             ),
@@ -268,11 +220,3 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-_launchOtherDistrict() async {
-  const url = "https://www.covid19india.org/state/MH";
-  if (await canLaunch(url)) {
-    await launch(url, forceWebView: true, enableJavaScript: true);
-  } else {
-    throw 'Could not launch $url';
-  }
-}

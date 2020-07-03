@@ -4,7 +4,6 @@ import 'package:covid_19/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:covid_19/screens/indiaStatsScreen.dart';
 
-
 void main() {
   runApp(MyApp());
 }
@@ -13,7 +12,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    
     return ConnectivityAppWrapper(
       app: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -37,17 +35,29 @@ class BottomNavBar extends StatefulWidget {
 }
 
 class _BottomNavBarState extends State<BottomNavBar> {
-
   int _currentIndex = 0;
+  final PageController _pageController = PageController();
   var screens = [
     HomeScreen(),
     IndiaStatsScreen(),
-  ]; 
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[_currentIndex],
+      body: PageView(
+    controller: _pageController,
+    children: <Widget>[
+     HomeScreen(),
+     IndiaStatsScreen(),
+    ],
+    onPageChanged: (page){
+      setState(() {
+        _currentIndex = page;
+      });
+    },
+  ),
+      //  screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         selectedFontSize: 12,
@@ -70,8 +80,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
           setState(() {
             _currentIndex = index;
           });
+          _pageController.jumpToPage(index);
         },
       ),
-    );   
+    );
   }
 }
+
