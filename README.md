@@ -15,9 +15,6 @@ Get COVID 19 statistics of primarily Nagpur district and other districts of Indi
 
 
 
-https://github.com/neilmehta31/covid19_app/blob/master/Screenshot_20200831-172331-min.jpg
-
-
 
 
 
